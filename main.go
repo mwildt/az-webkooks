@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/http/httputil"
 )
 
 func main() {
@@ -13,7 +14,10 @@ func main() {
 func serveHttp() {
 
 	httpHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Printf("[http] %s %s\n", r.Method, r.URL.Path)
+		fmt.Printf("[incoming http request] %s %s\n", r.Method, r.URL.Path)
+		dump, _ := httputil.DumpRequest(r, true)
+		fmt.Printf("%s\n\n", dump)
+
 		w.Header().Set("Content-Type", "text/plain")
 		w.Write([]byte("Hallo schöne welt"))
 	})
