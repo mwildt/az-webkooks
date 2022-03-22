@@ -23,7 +23,6 @@ GO_BUILD="CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main ."
 echo "run $GO_BUILD"
 eval $GO_BUILD
 
-
 if [ "$run_docker_build" = true ] ; 
 then
 
